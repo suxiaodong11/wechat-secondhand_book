@@ -1,0 +1,53 @@
+<view class="page-body">
+  <form>
+    <view class="page-section">
+      <view class="weui-cells">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">添加书籍图片</view>
+                <view class="weui-uploader__info">{{imageList.length}}/3</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files">
+                  <block wx:for="{{imageList}}" wx:for-item="image">
+                    <view class="weui-uploader__file">
+                      <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="page-section-title">书名</view>
+    <view class="section">
+      <input maxlength="10" bindblur="bindBookNameBlur" placeholder="最大输入长度10" />
+    </view>
+    <view class="page-section-title">请为书籍输入描述文字</view>
+    <view class="textarea-wrp">
+      <textarea class="textarea-content" bindblur="bindTextBlur" maxlength="250" placeholder="最大输入长度250" auto-height />
+    </view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{items}}">
+        <radio value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+      </label>
+    </radio-group>
+    <view class="page-section-title">联系方式：</view>
+    <view class="section">
+      <input type="number" placeholder="电话" bindblur="bindPhoneBlur" maxlength="10" />
+    </view>
+    <view class="section">
+      <input placeholder="微信" bindblur="bindWechatBlur" />
+    </view>
+    <view class="weui-btn-area" id="buttonContainer">
+      <button type="primary" bindtap="uploadBook">确认发布</button>
+    </view>
+  </form>
+</view>
